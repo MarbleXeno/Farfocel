@@ -1,0 +1,13 @@
+*/bin/
+*/bin-obj/
+
+.vscode/
+.vs/
+*.VC.opendb
+*.opendb
+*.sln
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+
+log_file.txt
