@@ -1,8 +1,14 @@
 /*
 	A simple logging class.
+
+	TO-DO:
+	1) implement better color handling
+	2) add the time to log messages
 */
 
 #pragma once
+
+#include <string>
 #include <iostream>
 #include <vector>
 #include <fstream>

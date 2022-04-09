@@ -4,7 +4,7 @@ namespace fr
 {
     sf::RenderWindow* EventManager::s_renderWindow;
     sf::Event EventManager::s_event;
-    std::unordered_map<sf::Event::EventType, fr::FunctionBinding> EventManager::s_eventBindings;
+    std::unordered_map<sf::Event::EventType, fr_util::FunctionBinding> EventManager::s_eventBindings;
 }
 
 void fr::EventManager::init(sf::RenderWindow& renderWindow) 
@@ -46,7 +46,7 @@ sf::Event& fr::EventManager::getEvent()
 
 void fr::EventManager::addBinding(sf::Event::EventType eventType, bool repeat, std::function<void()> function)
 {
-    fr::FunctionBinding callback;
+    fr_util::FunctionBinding callback;
     callback.bindFunction(function, repeat);
     s_eventBindings[eventType] = callback;
 }

@@ -1,3 +1,7 @@
+/*
+	An Asset Manager. Used by Resource Manager. It can store different types of assets.
+*/
+
 #pragma once
 #include <iostream>
 #include <unordered_map>

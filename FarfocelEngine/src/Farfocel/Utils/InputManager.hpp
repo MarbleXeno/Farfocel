@@ -1,5 +1,5 @@
 /*
-    Use it to check for the user's input and bind functions to it.
+    An input manager. Bind functions to user's actions and check for the user input.
 */
 
 #pragma once
@@ -32,7 +32,7 @@ namespace fr
 		static const sf::Vector2f getMouseCoords();
     private:
     	static sf::RenderWindow* s_renderWindow;
-	    static std::unordered_map<sf::Keyboard::Key, fr::FunctionBinding> s_keyboardKeys;
-	    static std::unordered_map<sf::Mouse::Button, fr::FunctionBinding> s_mouseButtons;
+	    static std::unordered_map<sf::Keyboard::Key, fr_util::FunctionBinding> s_keyboardKeys;
+	    static std::unordered_map<sf::Mouse::Button, fr_util::FunctionBinding> s_mouseButtons;
     };
 }

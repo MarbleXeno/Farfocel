@@ -24,5 +24,6 @@ namespace app
             fr::ResourceManager m_resourceManager;
 
             sf::Sprite m_sprite;
+            sf::Sprite m_secondSprite;
     };
 }

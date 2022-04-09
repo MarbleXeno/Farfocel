@@ -1,3 +1,7 @@
+/*
+	A Resource Manager. A wrapper around Asset Manager that loads and manages resources of your app.
+*/
+
 #pragma once
 #include <iostream>
 #include <SFML/Graphics.hpp>

@@ -3,8 +3,8 @@
 namespace fr
 {
 	sf::RenderWindow* InputManager::s_renderWindow;
-	std::unordered_map<sf::Keyboard::Key, fr::FunctionBinding> InputManager::s_keyboardKeys;
-	std::unordered_map<sf::Mouse::Button, fr::FunctionBinding> InputManager::s_mouseButtons;
+	std::unordered_map<sf::Keyboard::Key, fr_util::FunctionBinding> InputManager::s_keyboardKeys;
+	std::unordered_map<sf::Mouse::Button, fr_util::FunctionBinding> InputManager::s_mouseButtons;
 }
 
 void fr::InputManager::init(sf::RenderWindow& renderWindow)
@@ -14,14 +14,14 @@ void fr::InputManager::init(sf::RenderWindow& renderWindow)
 
 void fr::InputManager::bindKeyboard(const sf::Keyboard::Key key, bool repeat, std::function<void()> function)
 {
-    fr::FunctionBinding binding;
+	fr_util::FunctionBinding binding;
     binding.bindFunction(function, repeat);
 	s_keyboardKeys[key] = binding;
 }
 
 void fr::InputManager::bindMouse(const sf::Mouse::Button button, bool repeat, std::function<void()> function)
 {
-	fr::FunctionBinding binding;
+	fr_util::FunctionBinding binding;
     binding.bindFunction(function, repeat);
 	s_mouseButtons[button] = binding;
 }

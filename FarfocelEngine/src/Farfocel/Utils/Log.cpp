@@ -42,8 +42,10 @@ const char* fr::Log::getAnsiColor(LogColor logColor)
 
 void fr::Log::print(LogColor logColor, const std::string& message)
 {
-	s_logMessages.push_back(message);
-	std::cout << getAnsiColor(logColor) + message + getAnsiColor(LogColor::Reset);
+	std::string logMessage = message;
+	
+	s_logMessages.push_back(logMessage);
+	std::cout << getAnsiColor(logColor) + logMessage + getAnsiColor(LogColor::Reset);
 }
 
 void fr::Log::writeLogsToFile(std::string& directory)

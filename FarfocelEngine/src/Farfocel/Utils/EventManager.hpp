@@ -1,5 +1,5 @@
 /*
-    Manages and updates all the events of you glorious Farfocel app. Don't use it for the input, there's a class for that.
+    An Event Manager. Manages and updates app' events. You can also use it to bind functions to specific events.
 */
 
 #pragma once
@@ -22,6 +22,6 @@ namespace fr
     private:
         static sf::RenderWindow* s_renderWindow;
         static sf::Event s_event;
-        static std::unordered_map<sf::Event::EventType, fr::FunctionBinding> s_eventBindings;
+        static std::unordered_map<sf::Event::EventType, fr_util::FunctionBinding> s_eventBindings;
     };
 }

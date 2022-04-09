@@ -26,6 +26,8 @@ void Application::init(const std::string& windowTitle, const std::uint16_t& reso
 
     fr::InputManager::init(renderWindow);
 
+    setWindowFramerateLimit(144);
+
     fr::Log::print(fr::LogColor::Cyan, "Initialized Farfocel Engine! \n");
     fr::Log::print(fr::LogColor::Cyan, "Below you'll find some useful debug info. \n");
     fr::Log::print(fr::LogColor::Cyan, "After the app closes the file with the logs is created where the executable is.\n");
@@ -55,5 +57,6 @@ void Application::initAppLoop()
 
 void Application::setWindowFramerateLimit(const std::uint16_t& fpsLimit)
 {
-    m_windowFPSLimit = fpsLimit;    
+    m_windowFPSLimit = fpsLimit;
+    renderWindow.setFramerateLimit(m_windowFPSLimit);
 }

@@ -1,5 +1,5 @@
 /*
-    It's a runtime. Inherit from it and voilà - now you can make AAA games, FUCKING gigantic apps and more! 
+    A runtime. Inherit from it and voilà - now you can make AAA games, FUCKING gigantic apps and more! 
 */
 
 #pragma once

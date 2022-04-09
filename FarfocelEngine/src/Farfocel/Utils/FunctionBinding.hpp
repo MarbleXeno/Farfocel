@@ -1,5 +1,5 @@
 /*
-    Used by Event & Input managers. Basically makes it so they work - magically.
+    A function binding class. It's used by the Event and Input Managers.
 */
 
 #pragma once
@@ -7,7 +7,7 @@
 #include <functional>
 
 
-namespace fr
+namespace fr_util
 {
     class FunctionBinding
     {
