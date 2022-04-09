@@ -6,5 +6,7 @@
 #include "Farfocel/Utils/FunctionBinding.hpp"
 #include "Farfocel/Utils/EventManager.hpp"
 #include "Farfocel/Utils/InputManager.hpp"
+
 #include "Farfocel/Utils/Log.hpp"
 
+#include "Farfocel/Utils/ResourceManager/ResourceManager.hpp"

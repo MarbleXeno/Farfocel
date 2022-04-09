@@ -6,6 +6,9 @@ SandboxState::SandboxState(fr::StateManager& stateManager, sf::RenderWindow& ren
 {
 
     setStateName("SandboxState");
+    
+    m_resourceManager.loadTexture("something", "res/something.png");
+    m_sprite.setTexture(*m_resourceManager.getTexture("something"));
 }
 
 SandboxState::~SandboxState()
@@ -19,5 +22,5 @@ void SandboxState::update()
 
 void SandboxState::draw()
 {
-    m_renderWindow.clear(sf::Color::Cyan);
+    m_renderWindow.draw(m_sprite);
 }

@@ -10,4 +10,4 @@
 *.vcxproj.filters
 *.vcxproj.user
 
-log_file.txt
+*log_file.txt

@@ -21,5 +21,8 @@ namespace app
         private:
             fr::StateManager& m_stateManager;
             sf::RenderWindow& m_renderWindow;
+            fr::ResourceManager m_resourceManager;
+
+            sf::Sprite m_sprite;
     };
 }
