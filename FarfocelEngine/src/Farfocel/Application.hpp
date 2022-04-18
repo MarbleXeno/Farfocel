@@ -12,6 +12,7 @@
 #include "Utils/EventManager.hpp"
 #include "Utils/InputManager.hpp"
 #include "Utils/Log.hpp"
+#include "Utils/AnimationManager/Animation.hpp"
 
 namespace fr
 {

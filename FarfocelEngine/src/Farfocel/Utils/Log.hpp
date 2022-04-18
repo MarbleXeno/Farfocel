@@ -31,7 +31,9 @@ namespace fr
 	class Log
 	{
 	public:
-		static void print(LogColor logColor, const std::string& message);
+		static void printSpace();
+		static void print(LogColor logColor, const bool addSpace, const std::string& message);
+		static void printDebug(LogColor logColor, const bool addSpace, const std::string& message);
 		static void writeLogsToFile(std::string& directory);
 	private:
 		static std::vector<std::string> s_logMessages;

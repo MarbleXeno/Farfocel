@@ -14,7 +14,7 @@ namespace fr_util
         public:
             FunctionBinding()
             {
-                m_callbackFunction = [](){std::cout<<"FUCK YOU :D\n";};
+                m_bindedFunction = [](){std::cout<<"FUCK YOU :D\n";};
                 m_hasBeenExecuted = false;
                 m_hasToRepeat = false;
             }
@@ -23,16 +23,14 @@ namespace fr_util
             
             void bindFunction(std::function<void()> function, bool hasToRepeat)   
             {   
-                m_callbackFunction = function;  
+                m_bindedFunction = function;  
                 m_hasToRepeat = hasToRepeat;    
             }
 
             bool execFunction()
             {
-                m_callbackFunction();
-
+                m_bindedFunction();
                 m_hasBeenExecuted = true;
-
                 return true;
             }
             
@@ -44,7 +42,7 @@ namespace fr_util
             bool hasToRepeat()  {   return m_hasToRepeat;    }
             bool hasBeenExecuted()  {   return m_hasBeenExecuted;  }
         private:
-            std::function<void()> m_callbackFunction;
+            std::function<void()> m_bindedFunction;
             bool m_hasBeenExecuted;
             bool m_hasToRepeat;
     };

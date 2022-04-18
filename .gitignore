@@ -10,4 +10,5 @@
 *.vcxproj.filters
 *.vcxproj.user
 
-*log_file.txt
+Sandbox/log_file.txt
+Farfocel/log_file.txt

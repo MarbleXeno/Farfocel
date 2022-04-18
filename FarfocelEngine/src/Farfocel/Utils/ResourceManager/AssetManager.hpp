@@ -5,32 +5,33 @@
 #pragma once
 #include <iostream>
 #include <unordered_map>
+#include <memory>
 
 #include "../Log.hpp"
 
 namespace fr_util
 {
-	template<typename T>
+	template<typename AssetC>
 	class AssetManager
 	{
 	public:
 		AssetManager() {}
 		~AssetManager() {}
 
-		template<typename T>
-		void add(const std::string& id, std::unique_ptr<T> asset)
+		template<typename AssetD>
+		void add(const std::string& id, std::unique_ptr<AssetD> asset)
 		{
 			if (m_assetMap.count(id))
 			{
-				fr::Log::print(fr::LogColor::Red, "AssetManager -> There's already an asset with the same name.");
+				fr::Log::printDebug(fr::LogColor::Red, true, "AssetManager -> There's already an asset with the same name.");
 				return;
 			}
 
 			m_assetMap[id] = std::move(asset);
 		}
 
-		template<typename T>
-		std::shared_ptr<T> get(const std::string& id)
+		template<typename AssetD>
+		std::shared_ptr<AssetD> get(const std::string& id)
 		{
 			if (m_assetMap.count(id))
 			{
@@ -38,11 +39,11 @@ namespace fr_util
 				return asset->second;
 			}
 
-			fr::Log::print(fr::LogColor::Red, "AssetManager -> Couldn't find the asset with the given id, returning a nullptr.");
+			fr::Log::printDebug(fr::LogColor::Red, true, "AssetManager -> Couldn't find the asset with the given id, returning a nullptr.");
 			return nullptr;
 		}
 
 	private:
-		std::unordered_map<std::string, std::shared_ptr<T>> m_assetMap;
+		std::unordered_map<std::string, std::shared_ptr<AssetC>> m_assetMap;
 	};
 }

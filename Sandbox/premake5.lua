@@ -38,8 +38,8 @@ project "Sandbox"
         {
             "sfml-graphics-s-d",
             "sfml-window-s-d",
-            "sfml-system-s-d",
             "sfml-audio-s-d",
+            "sfml-system-s-d",
             "opengl32",
             "openal32",
             "freetype",
@@ -68,8 +68,8 @@ project "Sandbox"
         {
             "sfml-graphics-s",
             "sfml-window-s",
-            "sfml-system-s",
             "sfml-audio-s",
+            "sfml-system-s",
             "opengl32",
             "openal32",
             "freetype",

@@ -40,12 +40,37 @@ const char* fr::Log::getAnsiColor(LogColor logColor)
 	}
 }
 
-void fr::Log::print(LogColor logColor, const std::string& message)
+void fr::Log::printSpace()
+{
+	std::cout << "\n";
+}
+
+void fr::Log::print(LogColor logColor, const bool addSpace,const std::string& message)
 {
 	std::string logMessage = message;
 	
 	s_logMessages.push_back(logMessage);
 	std::cout << getAnsiColor(logColor) + logMessage + getAnsiColor(LogColor::Reset);
+	if (addSpace)
+	{
+		printSpace();
+	}
+}
+
+void fr::Log::printDebug(LogColor logColor, const bool addSpace, const std::string& message)
+{
+	std::string logMessage = message;
+	s_logMessages.push_back(logMessage);
+
+#ifdef FR_DEBUG
+	//plus + plus + plus + plus; i hate string in c++
+	std::cout << "\u001b[30;1m[DEBUG] ";
+	std::cout << getAnsiColor(logColor) + logMessage + getAnsiColor(LogColor::Reset);
+	if (addSpace)
+	{
+		printSpace();
+	}
+#endif // FR_DEBUG
 }
 
 void fr::Log::writeLogsToFile(std::string& directory)
