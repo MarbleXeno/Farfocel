@@ -16,6 +16,7 @@ namespace app
             {
                 initWindow();
                 
+                //a little 'stress test'
                 fr::InputManager::bindKeyboard(sf::Keyboard::A, true, [=]() {stateManager.add(std::make_unique<SandboxState>(stateManager, renderWindow)); });
                 fr::InputManager::bindKeyboard(sf::Keyboard::D, false, [=]() {stateManager.popAll(); });
             }
