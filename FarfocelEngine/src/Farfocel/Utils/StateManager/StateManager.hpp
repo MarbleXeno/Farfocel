@@ -1,34 +1,44 @@
 /*
-    A State manager that manages the states. Super useful if you wanna create some more complex stuff, with menus and stuff.
+	Name:
+	StateManager
+
+	Description:
+	Manages and stores app states. Use it for more complex apps/games.
 */
 
-
 #pragma once
-#include <iostream>
+#include <SFML/Graphics.hpp>
 #include <stack>
 
 #include "IState.hpp"
+#include "../Log.hpp"
+
 
 namespace fr
 {
-    class IState;
-    class StateManager
-    {
-        public:
-            StateManager();
-            ~StateManager();
+	class IState;
+	class StateManager
+	{
+	public:
+		StateManager();
+		~StateManager();
 
-            void replace(IState* state);
-            void addTop(IState* state);
+		void add(std::unique_ptr<IState> state);
+		void replace(std::unique_ptr<IState> state);
 
-            void deleteAll();
-            void deleteTop();
+		void pop();
+		void popAll();
 
-            IState* getTop();
+		const uint32_t getStackSize()
+		{
+			return m_states.size();
+		}
 
-            void update();
-            void draw();
-        private:
-            std::stack<IState*> m_states;
-    };
+		void stateHandleEvents();
+		void stateHandleInput();
+		void stateUpdate(const float& deltaTime);
+		void stateDraw();
+	private:
+		std::stack<std::unique_ptr<IState>> m_states;
+	};
 }

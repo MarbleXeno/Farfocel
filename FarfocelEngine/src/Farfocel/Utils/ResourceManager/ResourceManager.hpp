@@ -1,5 +1,9 @@
 /*
-	A Resource Manager. A wrapper around Asset Manager that loads and manages resources of your app.
+	Name:
+	ResourceManager
+
+	Description:
+	A wrapper around Asset.hpp; Loads, stores and manages app assets.
 */
 
 #pragma once
@@ -7,7 +11,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 
-#include "AssetManager.hpp"
+#include "Asset.hpp"
 namespace fr
 {
 	class ResourceManager

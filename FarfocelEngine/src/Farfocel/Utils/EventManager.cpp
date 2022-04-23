@@ -2,66 +2,90 @@
 
 namespace fr
 {
+    bool EventManager::s_stopperinyo;
     sf::RenderWindow* EventManager::s_renderWindow;
-    sf::Event EventManager::s_event;
-    std::unordered_map<sf::Event::EventType, fr_util::FunctionBinding> EventManager::s_eventBindings;
+    sf::Event* EventManager::s_event;
+    std::unordered_map<sf::Event::EventType, fr_util::FunctionBinder> EventManager::s_eventBindings;
 }
 
-void fr::EventManager::init(sf::RenderWindow& renderWindow) 
+void fr::EventManager::init(sf::RenderWindow& renderWindow, sf::Event& evnt)
 {
+    s_stopperinyo = false;
     s_renderWindow = &renderWindow;
-
-    s_event = sf::Event();
+    s_event = &evnt;
 }
 
-void fr::EventManager::update()
+void fr::EventManager::updateEvents()
 {
-    while (s_renderWindow->pollEvent(s_event))
+    if (!s_renderWindow || !s_event)
     {
-        if (s_event.type == sf::Event::Closed)
+        if (!s_stopperinyo)
         {
-            clearAllBindings();
-            s_renderWindow->close();
-            break;
+            fr::Log::printDebug(fr::LogColor::Red, true, "EventManager: updateEvents -> EventManager is not properly initialized.");
+            s_stopperinyo = true;
         }
-        else
+        return;
+    }
+
+    while (s_renderWindow->pollEvent(*s_event))
+    {
+        std::unordered_map<sf::Event::EventType, fr_util::FunctionBinder>::iterator it = s_eventBindings.begin();
+
+        while (it != s_eventBindings.end())
         {
-            for (auto& it : s_eventBindings)
+            if (it->second.getState() == fr_util::FunctionBinderState::MarkedForRemoval)
             {
-                if (it.first == s_event.type)
+                it = s_eventBindings.erase(it);
+            }
+            else
+            {
+                if (it->first == s_event->type)
                 {
-                    it.second.execFunction();
-                    if (!it.second.hasToRepeat() && it.second.hasBeenExecuted())
-                        s_eventBindings.erase(it.first);
+                    if (!it->second.hasToRepeat() && it->second.getState() == fr_util::FunctionBinderState::Executed)
+                    {
+                        it->second.changeState(fr_util::FunctionBinderState::MarkedForRemoval);
+                    }
+                    else
+                    {
+                        it->second.execFunction();
+                    }
                 }
+                ++it;
             }
         }
     }
 }
 
-sf::Event& fr::EventManager::getEvent()
+
+
+const sf::Event* fr::EventManager::getEvent()
 {
-    return s_event;
+    if (s_event)
+    {
+        return s_event;
+    }
+
+    fr::Log::printDebug(fr::LogColor::Red, true, "EventManager: getEvent -> EventManager is not properly initialized. Returning nullptr.");
+    return nullptr;
+
 }
 
 void fr::EventManager::addBinding(sf::Event::EventType eventType, bool repeat, std::function<void()> function)
 {
-    fr_util::FunctionBinding callback;
+    fr_util::FunctionBinder callback;
     callback.bindFunction(function, repeat);
     s_eventBindings[eventType] = callback;
 }
 
-void fr::EventManager::setEvent(sf::Event& event)
+void fr::EventManager::clearBinding(sf::Event::EventType eventType)
 {
-    s_event = event;
-}
-
-void fr::EventManager::clearBiding(sf::Event::EventType eventType)
-{
-    s_eventBindings.erase(eventType);
+    s_eventBindings[eventType].changeState(fr_util::FunctionBinderState::MarkedForRemoval);
 }
 
 void fr::EventManager::clearAllBindings()
 {
-    s_eventBindings.clear();
+    for (auto& [key, value] : s_eventBindings)
+    {
+        value.changeState(fr_util::FunctionBinderState::MarkedForRemoval);
+    }
 }

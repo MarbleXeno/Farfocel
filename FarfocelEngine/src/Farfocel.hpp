@@ -10,13 +10,13 @@
 #include "Farfocel/Utils/StateManager/IState.hpp"
 #include "Farfocel/Utils/StateManager/StateManager.hpp"
 
-#include "Farfocel/Utils/FunctionBinding.hpp"
+#include "Farfocel/Utils/FunctionBinder.hpp"
 #include "Farfocel/Utils/EventManager.hpp"
 #include "Farfocel/Utils/InputManager.hpp"
 
 #include "Farfocel/Utils/Log.hpp"
 
 #include "Farfocel/Utils/ResourceManager/ResourceManager.hpp"
-#include "Farfocel/Utils/ResourceManager/AssetManager.hpp"
+#include "Farfocel/Utils/ResourceManager/Asset.hpp"
 
 #include "Farfocel/Utils/AnimationManager/Animation.hpp"

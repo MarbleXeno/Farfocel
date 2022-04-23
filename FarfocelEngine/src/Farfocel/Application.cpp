@@ -13,7 +13,7 @@ Application::Application()  : renderWindow(), m_windowFPSLimit(144)
 Application::~Application()
 {
     fr::InputManager::clearAllBindings();
-    fr::EventManager::clearAllBindings();
+
     std::string logFileDirectory = LOG_FILE_DEF_DIRECTORY;
     fr::Log::writeLogsToFile(logFileDirectory);
 }
@@ -24,20 +24,27 @@ void Application::init(const std::string& windowTitle, const std::uint16_t& reso
     system("cls");
 #endif // _WIN32
 
+    fr::Log::print(fr::LogColor::Red, true, "Welcome to Strawberry Fields, forever..");
+    fr::Log::printSpace();
+
+#ifdef FR_DEBUG
+    fr::Log::printDebug(fr::LogColor::White, true, "You're in a DEBUG mode.");
+#endif // FR_DEBUG
+
+    m_startupConfigurationFile.init(CFG_FILE_DEF_DIRECTORY);
 
     renderWindow.create(sf::VideoMode(resolutionX, resolutionY), windowTitle, sf::Style::Close);
     renderWindow.setView(sf::View(sf::FloatRect(0.f,0.f,resolutionX,resolutionY)));
 
-    fr::EventManager::init(renderWindow);
+    setWindowFramerateLimit(std::stoi(m_startupConfigurationFile.getEntry("fps_limit")));
+
+    fr::Log::print(fr::LogColor::White, true, "FPS Limit: " + std::to_string(m_windowFPSLimit));
 
     fr::InputManager::init(renderWindow);
+    fr::EventManager::init(renderWindow, evnt);
 
-    setWindowFramerateLimit(144);
-
-    fr::Log::print(fr::LogColor::Red, true, "Welcome to Strawberry Fields, forever..");
-    fr::Log::printSpace();
-
-    fr::Log::printDebug(fr::LogColor::White, true, "You're in a DEBUG mode.");
+    fr::EventManager::addBinding(sf::Event::Closed, false, [=]() {renderWindow.close(); });
+    fr::InputManager::bindMouse(sf::Mouse::Left, false, [=]() {fr::Log::print(fr::LogColor::White, true, "COOOOOOOOOL"); });
 }
 
 void Application::initWindow()
@@ -54,8 +61,11 @@ void Application::initAppLoop()
 {
     while (renderWindow.isOpen())
     {
-        fr::EventManager::update();
-        fr::InputManager::update();
+        fr::EventManager::updateEvents();
+
+        fr::InputManager::updateMouse();
+        fr::InputManager::updateKeyboard();
+
         update();
         draw();
     }

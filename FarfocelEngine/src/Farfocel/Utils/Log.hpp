@@ -1,9 +1,13 @@
 /*
-	A simple logging class.
+	Name:
+	Log
 
-	TO-DO:
-	1) implement better color handling
-	2) add the time to log messages
+	Description:
+	Prints and stores logs. Then, it can write them into a file.
+
+	To do:
+	Add better color handling.
+	Add timestamps to the logs.
 */
 
 #pragma once
@@ -25,7 +29,7 @@ namespace fr
 		Magenta,
 		Cyan,
 		White,
-		Reset,
+		Reset
 	};
 
 	class Log
