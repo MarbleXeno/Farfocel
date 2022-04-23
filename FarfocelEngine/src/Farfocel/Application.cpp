@@ -44,7 +44,6 @@ void Application::init(const std::string& windowTitle, const std::uint16_t& reso
     fr::EventManager::init(renderWindow, evnt);
 
     fr::EventManager::addBinding(sf::Event::Closed, false, [=]() {renderWindow.close(); });
-    fr::InputManager::bindMouse(sf::Mouse::Left, false, [=]() {fr::Log::print(fr::LogColor::White, true, "COOOOOOOOOL"); });
 }
 
 void Application::initWindow()
