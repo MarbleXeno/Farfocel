@@ -3,7 +3,7 @@
 # Purely written in my free time
 The progress is slow as I often don't have it.
 
-#Currently working on:
+# Currently working on:
 Converting the project from Premake to CMake.
 
 # Recent changes:
