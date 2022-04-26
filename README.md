@@ -3,6 +3,9 @@
 # Purely written in my free time
 The progress is slow as I often don't have it.
 
+Currently working on:
+Converting the project from Premake to CMake.
+
 # Recent changes:
 1) Removed a memory leak in State Manager - now the states are actually deleted properly.
 2) Added a StartupConfigurationFile.hpp util, which now is only used by the engine. It's still messy and I'm still not sure if it is necessary.
