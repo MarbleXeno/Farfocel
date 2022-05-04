@@ -28,14 +28,8 @@ void Application::init(const std::string& windowTitle, const std::uint16_t& reso
     fr::Log::printDebug(fr::LogColor::White, true, "You're in a DEBUG mode.");
 #endif // FR_DEBUG
 
-    m_startupConfigurationFile.init(CFG_FILE_DEF_DIRECTORY);
-
     renderWindow.create(sf::VideoMode(resolutionX, resolutionY), windowTitle, sf::Style::Close);
     renderWindow.setView(sf::View(sf::FloatRect(0.f,0.f,resolutionX,resolutionY)));
-
-    setWindowFramerateLimit(std::stoi(m_startupConfigurationFile.getEntry("fps_limit")));
-
-    fr::Log::print(fr::LogColor::White, true, "FPS Limit: " + std::to_string(m_windowFPSLimit));
 
     fr::InputManager::init(renderWindow);
     fr::EventManager::init(renderWindow, evnt);

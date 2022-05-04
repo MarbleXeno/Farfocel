@@ -20,8 +20,6 @@
 
 #include "Utils/Log.hpp"
 
-#include "Utils/StartupConfigurationFile.hpp"
-
 #include "Utils/AnimationManager/Animation.hpp"
 
 namespace fr
@@ -30,7 +28,6 @@ namespace fr
     #define WINDOW_DEF_RES_Y 480
     #define WINDOW_DEF_TITLE "Farfocel Application"
     #define LOG_FILE_DEF_DIRECTORY "log_file.txt"
-    #define CFG_FILE_DEF_DIRECTORY "startup_cfg.txt"
 
     class Application
     {
@@ -53,7 +50,6 @@ namespace fr
 
         private:
             void init(const std::string& windowTitle, const std::uint16_t& resolutionX, const std::uint16_t& resolutionY);
-            fr_util::StartupConfigurationFile m_startupConfigurationFile;
             std::uint16_t m_windowFPSLimit;
             sf::Event evnt;
 

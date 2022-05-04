@@ -1,20 +1,39 @@
-![Official Logo](frclengine_logo.png)
+# An Official Logo of Farfocel - now animated:
+![An official logo of Farfocel](GithubProjectAssets/official_frcl_engine_logo_animated_2010_cooltext_text_generator.gif)
 
-# Purely written in my free time
-The progress is slow as I often don't have it.
+# Why is the development progress so slow!?
+Because I'm lazy and often don't have much time.
 
-# Currently working on:
-Converting the project from Premake to CMake.
+# Which IDE is used to write this project?
+I test this project on different IDEs/compilers regularly, to see if everything works correctly. Primarily though, I use Jetbrains CLion and Visual Studio 2022.
 
-# Recent changes:
-1) Removed a memory leak in State Manager - now the states are actually deleted properly.
-2) Added a StartupConfigurationFile.hpp util, which now is only used by the engine. It's still messy and I'm still not sure if it is necessary.
-3) Redesigned Input and Event managers. Before, it was possible to delete entries while iterating through the map, which would result in a crash. Now, I added an additional state in FunctionBinder (which got renamed from FunctionBinding). It's used to determine if the entry in the map should be removed before iterating.
+# How to compile?
+Farfocel "Engine" uses Premake5 as its primary build system and the SFML library for multimedia functionalities.
 
-# How to compile
-### On Windows
-You can use the 'build.bat' script to generate a Visual Studio solution and compile it or you can setup MinGW on your system and generate Makefiles to compile the project that way.
-### On Linux
-I didn't test it on Linux yet, so this might not work. You can generate Makefiles using Premake and then compile the project using Make.
-### On MacOS
-I didn't test it on MacOS yet, but the idea should be the same as on Linux.
+There is a possibility to use a CMake build system by using [this Premake5 extension](https://github.com/Enhex/premake-cmake).
+The guide below is based upon the Premake5.
+
+### 1) On Windows
+On Windows, you can compile Farfocel "Engine" using a Visual Studio or MingW. Create the project for your desired IDE/compiler
+using the Premake5 that is included in the vendor directory. Generate the project for Visual Studio (recomended) or MingW and 
+compile it. You will obtain a static library.
+
+***Keep in mind!***
+As for now, with the Github project, statically compiled SFML library for MingW compiler (.a extension) **is not included**, which means, you have to
+compile it yourself. Making it possible to generate a Premake5 project without the use of static SFML library is on my to-do list.
+In the meantime, [here's a guide](https://www.sfml-dev.org/tutorials/2.5/compile-with-cmake.php) which will help you generating a static SFML project for MingW which you can then compile.
+
+### 2) On Linux/MacOS
+On Linux/MacOS, Farfocel "Engine" uses a dynamic version of SFML library. Download it for your system using [this guide](https://www.sfml-dev.org/download/sfml/2.5.1/).
+Install a C++ compiler and Premake5. After that, you can generate a Farfocel "Engine" project and compile it. You will obtain
+a static library.
+
+# How to use it
+For now, to use the "Engine", you need to compile it from source yourself. If you already didn't, go to the section
+describing it to learn how to do that. After compiling it, you will obtain a static library which you can link to. Don't forget to add 'Farfocel.hpp' public header, and 'EntryPoint.hpp' files to your include paths.
+
+***Keep in mind!***
+You have to add the SFML library to your app project, since the Farfocel uses and requires it.
+
+**If you don't want to create your own app project, you can also use a Sandbox project included in this repo,**
+which is already setup and uses Premake5.
