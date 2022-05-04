@@ -1,23 +1,27 @@
 #include "SandboxState.hpp"
-using namespace app;
 
-SandboxState::SandboxState(fr::StateManager& stateManager, sf::RenderWindow& renderWindow)
-    :   m_stateManager(stateManager), m_renderWindow(renderWindow)
-{
-
-    setStateName("SandboxState");
-}
-
-SandboxState::~SandboxState()
+app::SandboxState::SandboxState(fr::StateManager& stateManager, sf::RenderWindow& renderWindow)
+	: m_stateManager(&stateManager), m_renderWindow(&renderWindow)
 {
 }
 
-void SandboxState::update()
+app::SandboxState::~SandboxState()
 {
-
 }
 
-void SandboxState::draw()
+void app::SandboxState::handleEvents()
 {
-    m_renderWindow.clear(sf::Color::Cyan);
+}
+
+void app::SandboxState::handleInput()
+{
+}
+
+void app::SandboxState::update(const float& deltaTime)
+{
+}
+
+void app::SandboxState::draw()
+{
+	m_renderWindow->clear(sf::Color::White);
 }

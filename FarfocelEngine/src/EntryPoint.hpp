@@ -1,5 +1,9 @@
 /*
-    An entry point of the program. Here's the main function. It's here to move it to the Farfocel's side.
+	Name:
+	EntryPoint
+
+	Description:
+	Consists of a main function. It's here, where the programs starts.
 */
 
 #pragma once

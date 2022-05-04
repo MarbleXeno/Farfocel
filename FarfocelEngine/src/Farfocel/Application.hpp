@@ -1,5 +1,9 @@
 /*
-    It's a runtime. Inherit from it and voilà - now you can make AAA games, FUCKING gigantic apps and more! 
+    Name:
+    Application
+
+    Description:
+    A runtime. Inherit from it and voilà - now you can make AAA games, FUCKING gigantic apps and more!
 */
 
 #pragma once
@@ -10,8 +14,13 @@
 
 #include "Utils/StateManager/StateManager.hpp"
 #include "Utils/EventManager.hpp"
+
 #include "Utils/InputManager.hpp"
+#include "Utils/EventManager.hpp"
+
 #include "Utils/Log.hpp"
+
+#include "Utils/AnimationManager/Animation.hpp"
 
 namespace fr
 {
@@ -36,13 +45,14 @@ namespace fr
 
         protected:
             sf::RenderWindow renderWindow;
+
             fr::StateManager stateManager;
 
         private:
             void init(const std::string& windowTitle, const std::uint16_t& resolutionX, const std::uint16_t& resolutionY);
             std::uint16_t m_windowFPSLimit;
+            sf::Event evnt;
 
-            sf::Event m_event;
     };
 
     Application* initApplication();

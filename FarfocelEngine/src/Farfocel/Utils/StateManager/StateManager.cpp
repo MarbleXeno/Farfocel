@@ -1,62 +1,65 @@
 #include "StateManager.hpp"
-using namespace fr;
 
-StateManager::StateManager() 
+fr::StateManager::StateManager()
 {
 
 }
 
-StateManager::~StateManager()
+fr::StateManager::~StateManager()
 {
-    
+	popAll();
 }
 
-void StateManager::replace(IState* state) 
+void fr::StateManager::add(std::unique_ptr<IState> state)
 {
-    deleteAll();
-    addTop(state);    
+	m_states.push(std::move(state));
 }
 
-void StateManager::addTop(IState* state) 
+void fr::StateManager::replace(std::unique_ptr<IState> state)
 {
-    m_states.push(state);
+	pop();
+	m_states.push(std::move(state));
 }
 
-void StateManager::deleteAll()
+void fr::StateManager::pop()
 {
-    while(!m_states.empty())
-    {
-        deleteTop();
-    }
+	if (m_states.empty())
+	{
+		fr::Log::printDebug(fr::LogColor::White, true, "StateManager: pop -> State stack is already empty, no need to pop anything.");
+		return;
+	}
+	
+	m_states.pop();
 }
 
-void StateManager::deleteTop()
+void fr::StateManager::popAll()
 {
-    if(!m_states.empty())
-    {
-        delete getTop();
-        m_states.pop();
-    }
+	while (!m_states.empty())
+	{
+		pop();
+	}
 }
 
-IState* StateManager::getTop()
+void fr::StateManager::stateHandleEvents()
 {
-    if(m_states.empty())
-    {
-        return m_states.top();
-    }
-    return nullptr;
+	if(!m_states.empty())
+		m_states.top()->handleEvents();
 }
 
-void StateManager::update()
+void fr::StateManager::stateHandleInput()
 {
-    if(!m_states.empty())
-        m_states.top()->update();
+	if (!m_states.empty())
+		m_states.top()->handleEvents();
 }
 
-void StateManager::draw()
+void fr::StateManager::stateUpdate(const float& deltaTime)
 {
-    if(!m_states.empty())
-        m_states.top()->draw();
+	if (!m_states.empty())
+		m_states.top()->update(deltaTime);
 }
 
+void fr::StateManager::stateDraw()
+{
+	if (!m_states.empty())
+		m_states.top()->draw();
+}

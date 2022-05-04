@@ -1,4 +1,5 @@
 #include "Application.hpp"
+
 using namespace fr;
 
 Application::Application()  : renderWindow(), m_windowFPSLimit(144)
@@ -9,22 +10,31 @@ Application::Application()  : renderWindow(), m_windowFPSLimit(144)
 Application::~Application()
 {
     fr::InputManager::clearAllBindings();
-    fr::EventManager::clearAllBindings();
+
     std::string logFileDirectory = LOG_FILE_DEF_DIRECTORY;
     fr::Log::writeLogsToFile(logFileDirectory);
 }
 
 void Application::init(const std::string& windowTitle, const std::uint16_t& resolutionX, const std::uint16_t& resolutionY)
 {
+#ifdef _WIN32
+    system("cls");
+#endif // _WIN32
+
+    fr::Log::print(fr::LogColor::Red, true, "Welcome to Strawberry Fields, forever..");
+    fr::Log::printSpace();
+
+#ifdef FR_DEBUG
+    fr::Log::printDebug(fr::LogColor::White, true, "You're in a DEBUG mode.");
+#endif // FR_DEBUG
+
     renderWindow.create(sf::VideoMode(resolutionX, resolutionY), windowTitle, sf::Style::Close);
     renderWindow.setView(sf::View(sf::FloatRect(0.f,0.f,resolutionX,resolutionY)));
 
-    fr::EventManager::init(renderWindow);
-    fr::EventManager::addBinding(sf::Event::Closed, false, [&](){renderWindow.close();});
-
     fr::InputManager::init(renderWindow);
+    fr::EventManager::init(renderWindow, evnt);
 
-    fr::Log::print(fr::LogColor::Cyan, "Initialized Farfocel Engine!");
+    fr::EventManager::addBinding(sf::Event::Closed, false, [=]() {renderWindow.close(); });
 }
 
 void Application::initWindow()
@@ -41,8 +51,11 @@ void Application::initAppLoop()
 {
     while (renderWindow.isOpen())
     {
-        fr::EventManager::update();
-        fr::InputManager::update();
+        fr::EventManager::updateEvents();
+
+        fr::InputManager::updateMouse();
+        fr::InputManager::updateKeyboard();
+
         update();
         draw();
     }
@@ -50,5 +63,6 @@ void Application::initAppLoop()
 
 void Application::setWindowFramerateLimit(const std::uint16_t& fpsLimit)
 {
-    m_windowFPSLimit = fpsLimit;    
+    m_windowFPSLimit = fpsLimit;
+    renderWindow.setFramerateLimit(m_windowFPSLimit);
 }

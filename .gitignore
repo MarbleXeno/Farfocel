@@ -1,6 +1,8 @@
 */bin/
 */bin-obj/
 
+.idea/
+
 .vscode/
 .vs/
 *.VC.opendb
@@ -10,4 +12,17 @@
 *.vcxproj.filters
 *.vcxproj.user
 
-log_file.txt
+*.a
+
+cmake/
+cmake-build-debug/
+cmake-build-release/
+
+*/MakeFile*
+*/Makefile*
+
+CMakeLists.txt
+*.cmake
+
+Sandbox/log_file.txt
+Farfocel/log_file.txt

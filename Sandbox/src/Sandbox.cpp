@@ -6,6 +6,7 @@
 #include "Farfocel.hpp"
 
 #include "AppStates/SandboxState.hpp"
+
 namespace app
 {
     class Sandbox : public fr::Application
@@ -14,7 +15,10 @@ namespace app
             Sandbox()
             {
                 initWindow();
-                stateManager.addTop(new SandboxState(stateManager, renderWindow));
+                
+                //a little 'stress test'
+                fr::InputManager::bindKeyboard(sf::Keyboard::A, true, [=]() {stateManager.add(std::make_unique<SandboxState>(stateManager, renderWindow)); });
+                fr::InputManager::bindKeyboard(sf::Keyboard::D, false, [=]() {stateManager.popAll(); });
             }
 
             ~Sandbox()
@@ -24,13 +28,13 @@ namespace app
 
             void update()
             {
-                stateManager.update();
+                stateManager.stateUpdate(16.f);
             }
 
             void draw()
             {
                 renderWindow.clear(sf::Color::Yellow);
-                stateManager.draw();
+                stateManager.stateDraw();
                 renderWindow.display();
             }
     };
