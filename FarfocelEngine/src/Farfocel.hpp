@@ -20,3 +20,4 @@
 #include "Farfocel/Utils/ResourceManager/Asset.hpp"
 
 #include "Farfocel/Utils/AnimationManager/Animation.hpp"
+#include "Farfocel/Utils/AnimationManager/TextureAtlas.hpp"

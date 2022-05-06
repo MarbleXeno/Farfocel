@@ -2,7 +2,7 @@
 
 using namespace fr;
 
-Application::Application()  : renderWindow(), m_windowFPSLimit(144)
+Application::Application()  : renderWindow(), m_windowFPSLimit(144), deltaTime(16.f)
 {
 
 }
@@ -32,7 +32,7 @@ void Application::init(const std::string& windowTitle, const std::uint16_t& reso
     renderWindow.setView(sf::View(sf::FloatRect(0.f,0.f,resolutionX,resolutionY)));
 
     fr::InputManager::init(renderWindow);
-    fr::EventManager::init(renderWindow, evnt);
+    fr::EventManager::init(renderWindow, m_event);
 
     fr::EventManager::addBinding(sf::Event::Closed, false, [=]() {renderWindow.close(); });
 }
@@ -51,6 +51,11 @@ void Application::initAppLoop()
 {
     while (renderWindow.isOpen())
     {
+        deltaTime = m_clock.restart().asSeconds();
+
+        if (deltaTime > 1.0f / m_windowFPSLimit)
+            deltaTime = 1.f / m_windowFPSLimit;
+
         fr::EventManager::updateEvents();
 
         fr::InputManager::updateMouse();
