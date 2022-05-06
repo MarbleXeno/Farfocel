@@ -48,10 +48,13 @@ namespace fr
 
             fr::StateManager stateManager;
 
+            float deltaTime;
+
         private:
             void init(const std::string& windowTitle, const std::uint16_t& resolutionX, const std::uint16_t& resolutionY);
             std::uint16_t m_windowFPSLimit;
-            sf::Event evnt;
+            sf::Event m_event;
+            sf::Clock m_clock;
 
     };
 

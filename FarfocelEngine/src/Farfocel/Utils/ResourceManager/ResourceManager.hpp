@@ -12,6 +12,7 @@
 #include <SFML/Audio.hpp>
 
 #include "Asset.hpp"
+#include "../AnimationManager/TextureAtlas.hpp"
 namespace fr
 {
 	class ResourceManager
@@ -26,6 +27,7 @@ namespace fr
 		void loadMusic(const std::string& id, const std::string& directoryToAsset);
 		void loadSound(const std::string& id, const std::string& directoryToAsset);
 
+        void loadTextureAtlas(const std::string& id, const sf::Texture& texture, const sf::Vector2u& frameCountPerAxis);
 
 		std::shared_ptr<sf::Image> getImage(const std::string& id)
 		{
@@ -47,11 +49,18 @@ namespace fr
 		{
 			return m_soundManager.get<sf::Sound>(id);
 		}
+
+        std::shared_ptr<fr::TextureAtlas> getTextureAtlas(const std::string& id)
+        {
+            return m_textureAtlasManager.get<fr::TextureAtlas>(id);
+        }
 	private:
 		fr_util::AssetManager<sf::Image> m_imageManager;
 		fr_util::AssetManager<sf::Texture> m_textureManager;
 		fr_util::AssetManager<sf::Font> m_fontManager;
 		fr_util::AssetManager<sf::Music> m_musicManager;
 		fr_util::AssetManager<sf::Sound> m_soundManager;
+
+        fr_util::AssetManager<fr::TextureAtlas> m_textureAtlasManager;
 	};
 }

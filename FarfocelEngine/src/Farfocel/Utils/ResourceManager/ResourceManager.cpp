@@ -59,3 +59,10 @@ void fr::ResourceManager::loadSound(const std::string& id, const std::string& di
 	sound->setBuffer(soundBuffer);
 	m_soundManager.add<sf::Sound>(id, std::move(sound));
 }
+
+void fr::ResourceManager::loadTextureAtlas(const std::string &id, const sf::Texture &texture,
+                                           const sf::Vector2u &frameCountPerAxis)
+{
+    std::unique_ptr<fr::TextureAtlas> textureAtlas = std::make_unique<fr::TextureAtlas>(texture, frameCountPerAxis);
+    m_textureAtlasManager.add<fr::TextureAtlas>(id, std::move(textureAtlas));
+}
