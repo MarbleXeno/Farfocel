@@ -90,13 +90,15 @@ namespace fr_util
 				return;
 			}
 
-
-			if (m_playable && m_animationState == fr::AnimationState::Playing)
+			if (m_playable)
 			{
 				m_elapsedTime += deltaTime;
 				
 				if (m_elapsedTime >= m_switchTime)
 				{
+					m_totalTime += deltaTime;
+					m_elapsedTime -= m_switchTime;
+
 					if (m_playedOnce && !m_repeat)
 					{
 						m_sprite->setTextureRect(m_textureAtlas->getFrameTextureRect(m_startingFrame));
@@ -104,13 +106,11 @@ namespace fr_util
 						m_animationState = fr::AnimationState::MarkedForRemoval;
 					}
 
-					m_animationState = fr::AnimationState::Playing;
-
-					m_totalTime += deltaTime;
-					m_elapsedTime -= m_switchTime;
-
-					m_sprite->setTextureRect(m_textureAtlas->getFrameTextureRect(m_currentFrame));
-					m_currentFrame++;
+					if (m_animationState == fr::AnimationState::Playing)
+					{
+						m_sprite->setTextureRect(m_textureAtlas->getFrameTextureRect(m_currentFrame));
+						m_currentFrame++;
+					}
 
 
 					if (m_currentFrame > m_endingFrame)
@@ -134,6 +134,9 @@ namespace fr_util
 
 		void setAnimationState(fr::AnimationState state)
 		{
+			if (state == fr::AnimationState::Paused)
+				m_elapsedTime = 0;
+
 			m_animationState = state;
 		}
 

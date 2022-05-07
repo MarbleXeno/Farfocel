@@ -10,6 +10,10 @@ app::SandboxState::SandboxState(fr::StateManager& stateManager, sf::RenderWindow
 
 	m_animationManager.add("animated_farfocel_logo", m_sprite, *m_resourceManager.getTextureAtlas("texture_atlas"));
 	m_animationManager.init("animated_farfocel_logo", 5.f, true, 1, 5);
+
+	fr::InputManager::bindKeyboard(sf::Keyboard::D, false, [=]() {m_animationManager.changeAnimationState("animated_farfocel_logo", fr::AnimationState::Paused); });
+	fr::InputManager::bindKeyboard(sf::Keyboard::A, false, [=]() {m_animationManager.changeAnimationState("animated_farfocel_logo", fr::AnimationState::Playing); });
+
 }
 
 app::SandboxState::~SandboxState()
