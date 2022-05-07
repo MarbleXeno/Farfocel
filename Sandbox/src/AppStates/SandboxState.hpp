@@ -18,9 +18,8 @@ namespace app
 		sf::RenderWindow* m_renderWindow;
 
         fr::ResourceManager m_resourceManager;
-
-		fr_util::Animation m_animation;
-
-		sf::Sprite m_animatedLogoSprite;
+	
+		sf::Sprite m_sprite;
+		fr::AnimationManager m_animationManager;
 	};
 }

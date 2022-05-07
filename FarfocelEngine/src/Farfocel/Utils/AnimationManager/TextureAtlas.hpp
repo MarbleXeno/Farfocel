@@ -6,6 +6,7 @@
     A custom Farfocel Asset. Stores and manages different texture rects based on the given texture atlas/sprite sheet.
 
     Used by:
+    ResourceManager,
     AnimationManager,
     Animation
 */

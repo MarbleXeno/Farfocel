@@ -20,9 +20,22 @@
 #pragma once
 #include "TextureAtlas.hpp"
 
+namespace fr
+{
+	enum class AnimationState
+	{
+		Unfocused = 0,
+		Paused,
+		Playing,
+		MarkedForRemoval,
+	};
+}
+
+
 namespace fr_util
 {
-	class Animation// : public sf::Drawable
+
+	class Animation : public sf::Drawable
 	{
 	public:
 		Animation()
@@ -51,7 +64,7 @@ namespace fr_util
 
 			m_initialized = true;
 			m_playable = true;
-
+			m_animationState = fr::AnimationState::Paused;
 		}
 
 		// for responsiveness, this should be always called before the start of the animation cycle
@@ -78,12 +91,20 @@ namespace fr_util
 			}
 
 
-			if (m_playable)
+			if (m_playable && m_animationState == fr::AnimationState::Playing)
 			{
 				m_elapsedTime += deltaTime;
 				
 				if (m_elapsedTime >= m_switchTime)
 				{
+					if (m_playedOnce && !m_repeat)
+					{
+						m_sprite->setTextureRect(m_textureAtlas->getFrameTextureRect(m_startingFrame));
+						m_playable = false;
+						m_animationState = fr::AnimationState::MarkedForRemoval;
+					}
+
+					m_animationState = fr::AnimationState::Playing;
 
 					m_totalTime += deltaTime;
 					m_elapsedTime -= m_switchTime;
@@ -91,28 +112,34 @@ namespace fr_util
 					m_sprite->setTextureRect(m_textureAtlas->getFrameTextureRect(m_currentFrame));
 					m_currentFrame++;
 
-					if (m_playedOnce && !m_repeat)
-					{
-						m_playable = false;
-						m_sprite->setTextureRect(m_textureAtlas->getFrameTextureRect(m_startingFrame));
-					}
 
 					if (m_currentFrame > m_endingFrame)
 					{
 						m_currentFrame = m_startingFrame;
 						m_playedOnce = true;
 					}
-
-
 				}
 			}
+		}
 
+		void draw(sf::RenderTarget& target, sf::RenderStates states) const override
+		{
+			target.draw(*m_sprite);
+		}
 
-			
+		const fr::AnimationState getAnimationState()
+		{
+			return m_animationState;
+		}
 
+		void setAnimationState(fr::AnimationState state)
+		{
+			m_animationState = state;
 		}
 
 	private:
+		fr::AnimationState m_animationState = fr::AnimationState::Unfocused;
+
 		bool m_initialized = false;
 
 		sf::Sprite* m_sprite = nullptr;

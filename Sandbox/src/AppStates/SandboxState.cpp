@@ -1,19 +1,15 @@
 #include "SandboxState.hpp"
 
 app::SandboxState::SandboxState(fr::StateManager& stateManager, sf::RenderWindow& renderWindow)
-	: m_stateManager(&stateManager), m_renderWindow(&renderWindow)
+	: m_stateManager(&stateManager), m_renderWindow(&renderWindow), m_animationManager(*m_renderWindow)
 {
-	m_resourceManager.loadTexture("animated_logo", "res/farfocel_logo_texture_atlas.png");
+	m_resourceManager.loadTexture("animated_logo", "res/test_animation.png");
 
-	m_resourceManager.loadTextureAtlas("texture_atlas", *m_resourceManager.getTexture("animated_logo"), { 1, 5 });
+	m_resourceManager.loadTextureAtlas("texture_atlas", *m_resourceManager.getTexture("animated_logo"), { 2, 3 });
+	m_resourceManager.getTextureAtlas("texture_atlas")->setCustomFrameCount(5);
 
-	m_animation = fr_util::Animation(m_animatedLogoSprite, *m_resourceManager.getTextureAtlas("texture_atlas"));
-	m_animation.init(30.f, true, 1, 5);
-	m_animation.applyTextureToSprite();
-
-	m_animatedLogoSprite.setOrigin(m_animatedLogoSprite.getGlobalBounds().width / 2.f, m_animatedLogoSprite.getGlobalBounds().height / 2.f);
-	m_animatedLogoSprite.setPosition({ 640 / 2, 480 / 2 });
-	m_animatedLogoSprite.setScale({ 0.4f, 0.4f });
+	m_animationManager.add("animated_farfocel_logo", m_sprite, *m_resourceManager.getTextureAtlas("texture_atlas"));
+	m_animationManager.init("animated_farfocel_logo", 5.f, true, 1, 5);
 }
 
 app::SandboxState::~SandboxState()
@@ -30,11 +26,11 @@ void app::SandboxState::handleInput()
 
 void app::SandboxState::update(const float& deltaTime)
 {
-	m_animation.play(deltaTime);
+	m_animationManager.update(deltaTime);
 }
 
 void app::SandboxState::draw()
 {
 	m_renderWindow->clear(sf::Color::Black);
-	m_renderWindow->draw(m_animatedLogoSprite);
+	m_animationManager.draw();
 }
