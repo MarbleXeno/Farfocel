@@ -19,7 +19,7 @@ project "FarfocelEngine"
         symbols "On"
 
         -- SFML libraries should be linked statically only on Windows. On other systems, you should link to them dynamically.
-        filter "system:Windows"
+        if os.host() == "windows" then
             defines {"SFML_STATIC"}
             includedirs
             {
@@ -48,8 +48,9 @@ project "FarfocelEngine"
                 "ogg",
                 "ws2_32"
             }
+        end
 
-        filter "system:Linux"
+        if os.host() == "linux" then
             links
             {
                 "sfml-graphics",
@@ -57,8 +58,9 @@ project "FarfocelEngine"
                 "sfml-audio",
                 "sfml-system"
             }
-        
-        filter "system:Mac"
+        end
+
+        if os.host() == "macosx" then
             links
             {
                 "sfml-graphics",
@@ -66,13 +68,14 @@ project "FarfocelEngine"
                 "sfml-audio",
                 "sfml-system"
             }
+        end
         
     filter "configurations:Release"
         defines {"NDEBUG"}
         defines "FR_RELEASE"
         optimize "On"
         
-        filter "system:Windows"
+        if os.host == "windows" then
             defines {"SFML_STATIC"}
             includedirs
             {
@@ -101,17 +104,9 @@ project "FarfocelEngine"
                 "ogg",
                 "ws2_32"
             }
-
-        filter "system:Linux"
-            links
-            {
-                "sfml-graphics",
-                "sfml-window",
-                "sfml-audio",
-                "sfml-system"
-            }
+        end
         
-        filter "system:Mac"
+        if os.host() == "linux" then
             links
             {
                 "sfml-graphics",
@@ -119,3 +114,14 @@ project "FarfocelEngine"
                 "sfml-audio",
                 "sfml-system"
             }
+        end
+
+        if os.host() == "macosx" then
+            links
+            {
+                "sfml-graphics",
+                "sfml-window",
+                "sfml-audio",
+                "sfml-system"
+            }
+        end

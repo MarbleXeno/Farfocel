@@ -18,7 +18,7 @@ project "Sandbox"
         defines {"FR_DEBUG"}  
         symbols "On"
 
-        filter "system:Windows"
+        if os.host() == "windows" then
             defines {"SFML_STATIC"}
             includedirs
             {
@@ -49,8 +49,9 @@ project "Sandbox"
                 "ws2_32",
                 "FarfocelEngine"
             }
+        end
 
-        filter "system:Linux"
+        if os.host() == "linux" then
             includedirs
             {
                 "%{wks.location}/FarfocelEngine/src"
@@ -63,8 +64,9 @@ project "Sandbox"
                 "sfml-system",
                 "FarfocelEngine"
             }
+        end
     
-        filter "system:Mac"
+        if os.host() == "macosx" then
             includedirs
             {
                 "%{wks.location}/FarfocelEngine/src"
@@ -77,13 +79,14 @@ project "Sandbox"
                 "sfml-system",
                 "FarfocelEngine"
             }
-    
+        end
+
     filter "configurations:Release"
         defines {"NDEBUG"}
         defines "FR_RELEASE"
         optimize "On"
     
-        filter "system:Windows"
+        if os.host() == "windows" then
             defines {"SFML_STATIC"}
             includedirs
             {
@@ -114,8 +117,9 @@ project "Sandbox"
                 "ws2_32",
                 "FarfocelEngine"
             }
+        end
 
-        filter "system:Linux"
+        if os.host() == "linux" then
             includedirs
             {
                 "%{wks.location}/FarfocelEngine/src"
@@ -128,8 +132,9 @@ project "Sandbox"
                 "sfml-system",
                 "FarfocelEngine"
             }
+        end
     
-        filter "system:Mac"
+        if os.host() == "macosx" then
             includedirs
             {
                 "%{wks.location}/FarfocelEngine/src"
@@ -142,3 +147,4 @@ project "Sandbox"
                 "sfml-system",
                 "FarfocelEngine"
             }
+        end
