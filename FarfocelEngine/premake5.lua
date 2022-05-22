@@ -75,7 +75,7 @@ project "FarfocelEngine"
         defines "FR_RELEASE"
         optimize "On"
         
-        if os.host == "windows" then
+        if os.host() == "windows" then
             defines {"SFML_STATIC"}
             includedirs
             {
