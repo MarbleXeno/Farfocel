@@ -15,7 +15,7 @@
 #include <SFML/Graphics.hpp>
 #include <unordered_map>
 
-#include "../Log.hpp"
+#include "Log.hpp"
 
 
 namespace fr

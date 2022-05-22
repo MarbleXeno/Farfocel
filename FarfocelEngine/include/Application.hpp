@@ -12,15 +12,15 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 
-#include "Utils/StateManager/StateManager.hpp"
-#include "Utils/EventManager.hpp"
+#include "StateManager.hpp"
+#include "EventManager.hpp"
 
-#include "Utils/InputManager.hpp"
-#include "Utils/EventManager.hpp"
+#include "InputManager.hpp"
+#include "EventManager.hpp"
 
-#include "Utils/Log.hpp"
+#include "Log.hpp"
 
-#include "Utils/AnimationManager/Animation.hpp"
+#include "Animation.hpp"
 
 namespace fr
 {

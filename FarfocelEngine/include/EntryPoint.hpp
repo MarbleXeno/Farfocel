@@ -7,7 +7,7 @@
 */
 
 #pragma once
-#include "Farfocel/Application.hpp"
+#include "Application.hpp"
 
 extern fr::Application* fr::initApplication();
 

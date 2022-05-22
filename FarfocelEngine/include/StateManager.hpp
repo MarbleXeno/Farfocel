@@ -11,7 +11,7 @@
 #include <stack>
 
 #include "IState.hpp"
-#include "../Log.hpp"
+#include "Log.hpp"
 
 
 namespace fr

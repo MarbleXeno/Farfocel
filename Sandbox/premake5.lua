@@ -22,7 +22,7 @@ project "Sandbox"
             defines {"SFML_STATIC"}
             includedirs
             {
-                "%{wks.location}/FarfocelEngine/src",
+                "%{wks.location}/FarfocelEngine/include/",
                 "%{wks.location}/SFML/include"
             }
             libdirs
@@ -54,7 +54,7 @@ project "Sandbox"
         if os.host() == "linux" then
             includedirs
             {
-                "%{wks.location}/FarfocelEngine/src"
+                "%{wks.location}/FarfocelEngine/include"
             }
             links
             {
@@ -69,7 +69,7 @@ project "Sandbox"
         if os.host() == "macosx" then
             includedirs
             {
-                "%{wks.location}/FarfocelEngine/src"
+                "%{wks.location}/FarfocelEngine/include"
             }
             links
             {
@@ -90,7 +90,7 @@ project "Sandbox"
             defines {"SFML_STATIC"}
             includedirs
             {
-                "%{wks.location}/FarfocelEngine/src",
+                "%{wks.location}/FarfocelEngine/include",
                 "%{wks.location}/SFML/include"
             }
             libdirs
@@ -122,7 +122,7 @@ project "Sandbox"
         if os.host() == "linux" then
             includedirs
             {
-                "%{wks.location}/FarfocelEngine/src"
+                "%{wks.location}/FarfocelEngine/include"
             }
             links
             {
@@ -137,7 +137,7 @@ project "Sandbox"
         if os.host() == "macosx" then
             includedirs
             {
-                "%{wks.location}/FarfocelEngine/src"
+                "%{wks.location}/FarfocelEngine/include"
             }
             links
             {

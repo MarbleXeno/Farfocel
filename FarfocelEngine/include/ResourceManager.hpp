@@ -12,7 +12,7 @@
 #include <SFML/Audio.hpp>
 
 #include "Asset.hpp"
-#include "../AnimationManager/TextureAtlas.hpp"
+#include "TextureAtlas.hpp"
 namespace fr
 {
 	class ResourceManager

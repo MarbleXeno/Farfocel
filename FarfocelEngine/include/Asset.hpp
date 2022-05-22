@@ -14,7 +14,7 @@
 #include <unordered_map>
 #include <memory>
 
-#include "../Log.hpp"
+#include "Log.hpp"
 
 namespace fr_util
 {

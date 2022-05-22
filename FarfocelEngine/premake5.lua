@@ -9,7 +9,7 @@ project "FarfocelEngine"
 
     files
     {
-        "src/**.hpp",
+        "include/**.hpp",
         "src/**.cpp"
     }
 
@@ -23,6 +23,7 @@ project "FarfocelEngine"
             defines {"SFML_STATIC"}
             includedirs
             {
+                "include/",
                 "%{wks.location}/SFML/include"
             }
             libdirs
@@ -51,6 +52,10 @@ project "FarfocelEngine"
         end
 
         if os.host() == "linux" then
+            includedirs
+            {
+                "include/"
+            }
             links
             {
                 "sfml-graphics",
@@ -61,6 +66,10 @@ project "FarfocelEngine"
         end
 
         if os.host() == "macosx" then
+            includedirs
+            {
+                "include/"
+            }
             links
             {
                 "sfml-graphics",
@@ -79,6 +88,7 @@ project "FarfocelEngine"
             defines {"SFML_STATIC"}
             includedirs
             {
+                "include/",
                 "%{wks.location}/SFML/include"
             }
             libdirs
@@ -107,6 +117,10 @@ project "FarfocelEngine"
         end
         
         if os.host() == "linux" then
+            includedirs
+            {
+                "include/"
+            }
             links
             {
                 "sfml-graphics",
@@ -117,6 +131,10 @@ project "FarfocelEngine"
         end
 
         if os.host() == "macosx" then
+            includedirs
+            {
+                "include/"
+            }
             links
             {
                 "sfml-graphics",
