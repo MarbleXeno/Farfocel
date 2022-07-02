@@ -10,8 +10,9 @@ app::SandboxState::SandboxState(fr::StateManager& stateManager, sf::RenderWindow
 	m_animationManager.add("animated_farfocel_logo", m_sprite, *m_resourceManager.getTextureAtlas("texture_atlas"));
 	m_animationManager.init("animated_farfocel_logo", 5.f, true, 1, 5);
 
-	fr::InputManager::bindKeyboard(sf::Keyboard::D, false, [=]() {m_animationManager.changeAnimationState("animated_farfocel_logo", fr::AnimationState::Paused); });
-	fr::InputManager::bindKeyboard(sf::Keyboard::A, false, [=]() {m_animationManager.changeAnimationState("animated_farfocel_logo", fr::AnimationState::Playing); });
+	fr::InputManager::bindKeyboard(sf::Keyboard::D, true, [&]() { stateManager.add(std::make_unique<SandboxState>(stateManager, renderWindow)); });
+	fr::InputManager::bindKeyboard(sf::Keyboard::A, true, [&]() { stateManager.pop(); });
+	fr::InputManager::bindKeyboard(sf::Keyboard::R, false, [&]() { stateManager.popAll(); });
 
 
 	m_sprite.setOrigin(m_sprite.getGlobalBounds().width / 2.f, m_sprite.getGlobalBounds().height / 2.f);
