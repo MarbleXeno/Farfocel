@@ -15,7 +15,6 @@ void sb::Sandbox::start()
 {
 	
 	FRCL.scene_manager.add(std::make_unique<sb::TestScene>("Test", &SFML, &FRCL));
-	FRCL.resource_manager.loadFont("font", "Assets/font.ttf");
 }
 
 void sb::Sandbox::update(const float& delta_time)

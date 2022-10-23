@@ -17,8 +17,6 @@ namespace sb
 		void draw();
 
 	private:
-		sf::Sprite m_farfocel_logo_animated;
-		fr::AnimationManager m_animation_manager;
 		fr::SFMLUtils& m_sfml;
 		fr::FRCLUtils& m_fr;
 	};
