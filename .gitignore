@@ -1,2 +1,8 @@
 bin/
 bin/*
+
+.vs/
+.vs/*
+
+out/
+out/*
