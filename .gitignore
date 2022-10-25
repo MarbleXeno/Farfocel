@@ -6,3 +6,5 @@ bin/*
 
 out/
 out/*
+
+CMakeSettings.json
