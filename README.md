@@ -1,5 +1,5 @@
 # Welcome to Farfocel
-Farfocel is a set of tools (or an engine, if you want to call it like that) for making 2D games with SFML and C++. It's my personal project for learning C++ development, so keep in mind that the code you'll see is probably not the best quality.
+Farfocel is a set of tools (or an engine, if you want to call it like that) for making 2D games with SFML and C++. It's my personal project for learning C++ development, so keep in mind that the code you'll see is probably not in the best quality.
 
 ### Currently, the project consists of 4 main managers + smaller utilities:
 #### 1. Scene Manager - a convenient tool for managing scenes
