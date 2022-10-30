@@ -3,7 +3,7 @@ Farfocel is a set of tools (or an engine, if you want to call it like that) for 
 
 ### Currently, the project consists of 4 main managers + smaller utilities:
 #### 1. Scene Manager - a convenient tool for managing scenes
-#### 2. Input and Event Managers - bind functions to user's inputs and/or events
+#### 2. Input and Event Managers - bind functions to user inputs and/or events
 #### 3. Resource Loader and Storer - load assets for your game, store and get them when you need
 #### 4. Sprite Animation Manager - load 2D sprite animations from Texture Atlases and apply them to your sprites
 
