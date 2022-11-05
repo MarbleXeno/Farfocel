@@ -40,6 +40,7 @@ namespace fru
         void changeState(const FunctionBinderState state)
         {
             m_state = state;
+
         }
 
         const FunctionBinderState getState()

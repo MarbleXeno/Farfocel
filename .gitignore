@@ -1,28 +1,10 @@
-*/bin/
-*/bin-obj/
+bin/
+bin/*
 
-.idea/
-
-.vscode/
 .vs/
-*.VC.opendb
-*.opendb
-*.sln
-*.vcxproj
-*.vcxproj.filters
-*.vcxproj.user
+.vs/*
 
-*.a
+out/
+out/*
 
-cmake/
-cmake-build-debug/
-cmake-build-release/
-
-*/MakeFile*
-*/Makefile*
-
-CMakeLists.txt
-*.cmake
-
-Sandbox/log_file.txt
-Farfocel/log_file.txt
+CMakeSettings.json
