@@ -1,35 +1,51 @@
+// TO-DO: State machine dopiescic
 #include "Sandbox.hpp"
 
-sb::Sandbox::Sandbox()
-{
-	initWindow();
-	initAppLoop();
-}
+namespace sb{
+    Sandbox::Sandbox()
+        : mLogo(), mResourceManager(), mAnimationManager(renderer), mInputManager(renderer.GetRenderWindow()), mScenesManager()
+    {
+        Init();
+        StartUpdateLoop();
+    }
 
-sb::Sandbox::~Sandbox()
-{
+    Sandbox::~Sandbox(){
 
-}
+    }
 
-void sb::Sandbox::start()
-{
-	
-	FRCL.scene_manager.add(std::make_unique<sb::TestScene>("Test", &SFML, &FRCL));
-}
+    void Sandbox::Start(){
+        mResourceManager.LoadTexture("farfocel_background", "res/farfocel_background.png");
+        mBackground.setTexture(*mResourceManager.GetTexture("farfocel_background"));
+        mResourceManager.LoadTextureAtlas("logo", "res/logo.png", { 1,5 });
+        mAnimationManager.AddTextureAtlas("logoTex", *mResourceManager.GetTextureAtlas("logo"));
+        mAnimationManager.Add("logo", mLogo, "logoTex", 1, 5, 10, true);
 
-void sb::Sandbox::update(const float& delta_time)
-{
-	
-}
+        mScenesManager.Add(new Scene("scene", renderer, mScenesManager));
 
-void sb::Sandbox::draw()
-{
+    }
 
-}
+    void Sandbox::HandleEvents(){
+        
+    }
 
-int main()
-{
-	sb::Sandbox* app = new sb::Sandbox;
-	delete app;
-	return 0;
+    void Sandbox::HandleInput(){
+
+    }
+
+    void Sandbox::Update(){
+        mAnimationManager.Update();
+        mScenesManager.Update();
+        mInputManager.UpdateMouse();
+        
+    }
+
+    void Sandbox::Render(){
+
+
+        renderer.GetRenderWindow().draw(mBackground);
+        renderer.GetRenderWindow().draw(mLogo);
+    
+        mScenesManager.Render();
+        
+    }
 }

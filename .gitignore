@@ -1,10 +1,30 @@
-bin/
-bin/*
+CMakeSettings.json
+CMakeCache.txt
+cmake_install.cmake
+cmake-build-debug/
+cmake-build-release/
+CMakeFiles/
+
+
+.idea/
+
+ALL_BUILD.*
 
 .vs/
-.vs/*
+.vscode/
+_deps/
+x64/
+*.sln
+*.vcxproj
+*.filters
+*.user
+*.exe
+*.pdb
 
+bin/
 out/
-out/*
-
-CMakeSettings.json
+build/
+BUILD/
+Farfocel-Library/
+*/*.dir/*
+Sandbox-Library/

@@ -1,20 +1,32 @@
 #pragma once
-#include "Core/Farfocel.hpp"
-#include "Core/Runtime.hpp"
+#include <Farfocel/Core/Runtime.hpp>
+#include <Farfocel/Managers/AnimationManager.hpp>
+#include <Farfocel/Managers/ResourcesManager.hpp>
+#include <Farfocel/Managers/InputManager.hpp>
+#include <Farfocel/Managers/ScenesManager.hpp>
 
-#include "Scenes/TestScene.hpp"
+#include "Scenes/Scene.hpp"
 
-namespace sb
-{
-	class Sandbox : public fr::Runtime
-	{
-	public:
-		Sandbox();
-		~Sandbox() override;
+namespace sb{
+    class Sandbox : public fr::Runtime{
+        public:
+            Sandbox();
+            ~Sandbox();
 
-		void start() override;
-		void update(const float& delta_time) override;
-		void draw() override;
-	private:
-	};
-}
+            void Start();
+            void HandleEvents();
+            void HandleInput();
+            void Update();
+            void Render();
+
+
+        private:
+            sf::Sprite mBackground;
+            sf::Sprite mLogo;
+            fr::ResourcesManager mResourceManager;
+            fr::AnimationManager mAnimationManager;
+            fr::InputManager mInputManager;
+
+            fr::ScenesManager mScenesManager;
+    };
+} // namespace sb
