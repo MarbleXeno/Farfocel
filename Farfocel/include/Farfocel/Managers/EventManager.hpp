@@ -3,6 +3,7 @@
 #include <imgui-SFML.h>
 #include <SFML/Graphics.hpp>
 #include <vector>
+#include <list>
 
 #include "Farfocel/Utils/FunctionCallback.hpp"
 

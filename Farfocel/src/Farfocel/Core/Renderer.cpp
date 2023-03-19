@@ -104,7 +104,7 @@ namespace fr{
         return mDeltaTime;
     }
 
-    sf::Time& Renderer::GetDeltaTime()
+    sf::Time Renderer::GetDeltaTime()
     {
         return mDeltaClock.getElapsedTime();
     }

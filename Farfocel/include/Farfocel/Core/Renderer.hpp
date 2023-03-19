@@ -29,7 +29,7 @@ namespace fr{
 
             void UpdateDeltaTime();
             const float& GetDeltaTimeFloat();
-            sf::Time& GetDeltaTime();
+            sf::Time GetDeltaTime();
 
             void ResizeView(const sf::Vector2u& size);
             const sf::Vector2u GetViewSize();

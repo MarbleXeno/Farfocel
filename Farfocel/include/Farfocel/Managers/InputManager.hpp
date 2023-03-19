@@ -3,6 +3,7 @@
 #include <functional>
 #include <unordered_map>
 #include <iostream>
+#include <list>
 
 #include "Farfocel/Utils/FunctionCallback.hpp"
 
