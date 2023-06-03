@@ -2,6 +2,8 @@
 #include <unordered_map>
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include <cstdint>
+
 
 namespace fru {
 	class TextureAtlas {

@@ -11,13 +11,18 @@ namespace fru {
 	class FunctionCallback {
 	public:
 
-		FunctionCallback(const bool& repeat, const std::function<void()> callback)
-			: mRepeat(repeat), mCallback(callback), mState(FunctionCallbackState::MarkedForExec)
+		FunctionCallback(const bool& repeat, const std::function<void()>& callback)
+			: mRepeat(repeat), mState(FunctionCallbackState::MarkedForExec), mCallback(callback)
 		{}
 
 		~FunctionCallback(){}
 
-		const bool& Repeat() { return mRepeat; }
+		void SetCallback(const std::function<void()>& callback){
+			mCallback = callback;
+		}
+
+		void SetRepeat(const bool& repeat){mRepeat = repeat;}
+		const bool& GetRepeat() { return mRepeat; }
 
 		void SetState(const FunctionCallbackState& state) { mState = state; }
 		const FunctionCallbackState& GetState() { return mState; }

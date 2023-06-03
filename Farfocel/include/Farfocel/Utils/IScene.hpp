@@ -1,8 +1,8 @@
 #pragma once
 #include <iostream>
-#include "Farfocel/Managers/ScenesManager.hpp"
+#include "Farfocel/Common/SceneManager.hpp"
 namespace fr {
-	class ScenesManager;
+	class SceneManager;
 
 	enum class SceneState {
 		Unfocused = 0,		// can't be updated or drawn

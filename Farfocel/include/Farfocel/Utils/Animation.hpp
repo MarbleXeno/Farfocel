@@ -1,6 +1,8 @@
 #pragma once
 #include <iostream>
 #include <SFML/Graphics.hpp>
+#include <cstdint>
+
 
 #include "Farfocel/Utils/TextureAtlas.hpp"
 
