@@ -21,7 +21,7 @@ if(WIN32)
     FetchContent_MakeAvailable(SFML)
 else()
     message(STATUS "Looking for SFML...")
-    find_package(SFML 2.5 COMPONENTS graphics window system audio)
+    find_package(SFML 2.6 COMPONENTS graphics window system audio)
 endif()
 
 message(STATUS "Fetching Dear ImGui...")
